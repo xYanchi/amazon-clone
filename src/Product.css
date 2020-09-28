@@ -22,9 +22,9 @@
     margin-top: 5px;
 }
 .product_info{
-    width: 100%;
     height: 100px;
-    margin-bottom: 40px;
+    
+    margin-bottom: 20px;
 }
 .product > button {
     background: #f0c14b;
@@ -33,4 +33,7 @@
     padding: 5px;
     border-color: #a88734 #9c7e31 #846a29;
     color: black;
+}
+.star_icon{
+    color: #f0c14b;
 }
