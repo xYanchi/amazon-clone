@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import CheckoutProduct from './CheckoutProduct';
 import './Payment.css'
@@ -6,6 +6,7 @@ import { useStateValue } from './StateProvider';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { getBasketTotal } from './reducer';
 import CurrencyFormat from 'react-currency-format';
+import axios from 'axios';
 
 function Payment() {
     const [{ user, basket }, dispatch] = useStateValue();
@@ -17,11 +18,46 @@ function Payment() {
     const [processing, setProcessing] = useState("");
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
+    const [clientSecret, setClientSecret] = useState(true)
 
+    useEffect(() => {
+        //generate the special stripe secret which allows us to charge a user
+        const getClientSecret = async () => {
+            //axios is get request or post request
+            const response = await axios({
+                method: 'post',
+                //Stripe expects the total in a currencies subunits
+                // $ => cents. Hence *100
+                url: `/payment/create?total=${getBasketTotal(basket) * 100}`
+            });
+            setClientSecret(response.data.clientSecret)
+        }
+        getClientSecret();
+    }, [basket])
 
-    const handleSubmit = e => {
+    const handleSubmit = async (event) => {
         //Stripe
+        event.preventDefault();
+        //Prevents the Buy Now btn to be clicked multiple times
+        setProcessing(true);
+        //clientSecret: how much to pay
+        const payload = await stripe.confirmCardPayment(clientSecret, {
+            //the card
+            payment_method: {
+                //find the card
+                card: elements.getElement(CardElement)
+            }
+            //paymentIntent is the payment confirmation
+        }).then(({ paymentIntent }) => {
+            setSucceeded(true);
+            setError(null);
+            setProcessing(false);
 
+            history.replace('/orders')
+        })
+
+
+        // const payload = await stripe
     }
     const handleChange = e => {
         //Listen for changes in the CardElement
