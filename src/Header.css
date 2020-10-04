@@ -51,7 +51,7 @@
 }
 .header_option_basket{
     display: flex;
-    align-items: center;
+    margin-top: 5px;
     color: white;
 }
 .header_basket_count{
