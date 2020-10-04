@@ -6,7 +6,7 @@ import './Subtotal';
 import Subtotal from './Subtotal';
 
 function Checkout() {
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
     return (
         <div className='checkout'>
             <div className="checkout_left">
@@ -14,6 +14,10 @@ function Checkout() {
 
 
                 <div>
+                    {/* Asynchronous period where it wont load the user 
+                    because it is trying to fetch it from firebase (user not loaded), it will protect from error so hence user? */}
+                    {/* Optional Chaining : ? */}
+                    <h3>Hello, {user?.email}</h3>
                     <h2 className="checkout_title">
                         Your Shopping Basket
                 </h2>
