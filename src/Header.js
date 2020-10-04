@@ -9,7 +9,7 @@ function Header() {
     const [{ basket }, dispatch] = useStateValue();
     return (
         <div className='header'>
-            <Link to='/'>
+            < Link to='/'>
                 <img className='header_logo' src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="" />
             </Link>
             <div className='header_search'>
