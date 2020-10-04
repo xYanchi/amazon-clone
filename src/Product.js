@@ -2,15 +2,17 @@ import React from 'react';
 import './Product.css';
 import StarIcon from '@material-ui/icons/Star';
 import { useStateValue } from './StateProvider';
+// import { v4 as uuidv4 } from 'uuid';
 
 function Product({ id, title, price, image, rating }) {
     const [{ basket }, dispatch] = useStateValue();
-    console.log("This is the basket", basket);
+
+    // console.log("This is the basket", basket);
 
     const addToBasket = () => {
         //dispatch the item into the data layer
         dispatch({
-            type: 'ADD_TO_BASKET',
+            type: "ADD_TO_BASKET",
             item: {
                 id: id,
                 title: title,
@@ -21,10 +23,10 @@ function Product({ id, title, price, image, rating }) {
         });
     };
     return (
-        <div className='product'>
+        <div className="product">
             <div className="product_info">
                 <p>{title}</p>
-                <p className='product_price'>
+                <p className="product_price">
                     <small>$</small>
                     <strong>{price}</strong>
                 </p>

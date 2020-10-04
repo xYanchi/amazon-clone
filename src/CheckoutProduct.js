@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import StarIcon from '@material-ui/icons/Star';
-import './CheckoutProduct.css'
+import './CheckoutProduct.css';
 import { useStateValue } from './StateProvider';
 
 function CheckoutProduct({ id, image, title, price, rating }) {
