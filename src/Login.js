@@ -1,8 +1,10 @@
+import { auth } from './firebase';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import './Login.css'
 
 function Login() {
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -11,13 +13,28 @@ function Login() {
         e.preventDefault();
 
         //Firebase login
-
+        auth
+            .signInWithEmailAndPassword(email, password)
+            .then(auth => {
+                history.push('/')
+            })
+            .catch(error => alert(error.message))
     }
 
     const register = e => {
         e.preventDefault();
 
         //Firebase register
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((auth) => {
+                //Successfully created a new user with email and password
+                console.log(auth);
+                if (auth) {
+                    //Forcing to redirect to home if there is an account created
+                    history.push('/')
+                }
+            })
+            .catch(error => alert(error.message))
     }
     return (
 
