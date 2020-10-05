@@ -29,13 +29,14 @@ function Payment() {
                 method: 'post',
                 //Stripe expects the total in a currencies subunits
                 // $ => cents. Hence *100
-                url: `/payment/create?total=${getBasketTotal(basket) * 100}`
+                url: `/payments/create?total=${getBasketTotal(basket) * 100}`
             });
             setClientSecret(response.data.clientSecret)
         }
         getClientSecret();
     }, [basket])
 
+    console.log("THE SECRET IS >>>", clientSecret)
     const handleSubmit = async (event) => {
         //Stripe
         event.preventDefault();
@@ -50,21 +51,21 @@ function Payment() {
             }
             //paymentIntent is the payment confirmation
         }).then(({ paymentIntent }) => {
-            setSucceeded(true);
-            setError(null);
-            setProcessing(false);
+            setSucceeded(true)
+            setError(null)
+            setProcessing(false)
 
-            history.replace('/orders');
+            history.replace('/orders')
         })
 
 
         // const payload = await stripe
     }
-    const handleChange = e => {
+    const handleChange = event => {
         //Listen for changes in the CardElement
         // and display any errors as the user types their credit card
-        setDisabled(Event.empty);
-        setError(Event.error ? Event.error.message : "");
+        setDisabled(event.empty);
+        setError(event.error ? event.error.message : "");
     }
     return (
         <div className='payment'>
