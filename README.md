@@ -2,7 +2,7 @@ This e-commerce web application will allow the user to order items with the test
 
 The purchase orders will be able to show in my Stripe account in real-time (You do not have access to this).
 
-The user can create an account or login/sign out to 'Test@gmail.com' and 'Test123' as email and password correspondingly.
+The user can create an account or login/sign out to 'Test@gmail.com' and 'Test123' as email and password correspondingly with Firebase Authentication
 
 The back-end is an Express Server run by a Firebase functions
 
