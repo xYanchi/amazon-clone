@@ -4,7 +4,7 @@ The purchase orders will be able to show in my Stripe account in real-time (You 
 
 The user can create an account or login/sign out to 'Test@gmail.com' and 'Test123' as email and password consecutively with Firebase Authentication.
 
-The back-end is an Express Server run by a Firebase functions
+The back-end is an Express Server run by a Firebase functions.
 
 ******************************************************
 Here is the deployed app: https://clone-7310d.web.app/
